@@ -1,0 +1,28 @@
+.profile__info{
+    display: flex;
+}
+
+.profile__account__info{
+    margin-top: 0.5rem;
+}
+
+.profile__account__displayname{
+    font-size: 15px;
+    
+    margin-left: 1rem;
+}
+
+.profile__account__username {
+    font-size: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: gray;
+    margin-left: 1rem;
+    
+  }
+  
+  
+  .profile__account__badge {
+    font-size: 14px !important;
+    color: var(--dwidder-color);
+  }

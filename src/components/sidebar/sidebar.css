@@ -1,0 +1,43 @@
+.sidebar{
+    border-right: 1px solid var(--dwidder-background);
+    flex: 0.3;
+    /* max-width: 250px; */
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.appbar{
+    display: none;
+}
+
+@media screen and (max-width: 420px) {
+    .sidebar {
+      padding-left:5px;
+      padding-right: 5px;
+      display: none;
+    }
+    .appbar{
+        display: block;
+        background: var(--dwidder-background);
+    }
+  }
+
+.sidebar__twitterIcon{
+    color: var(--dwidder-color);
+    font-size: 30px !important;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar__dweed{
+    background-color: var(--dwidder-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  border-radius: 30px !important;
+  height: 50px !important;
+  margin-top: 20px !important;
+}

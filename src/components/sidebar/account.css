@@ -1,0 +1,39 @@
+.account{
+    margin-Top: 10rem;
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid var(--dwidder-background);
+    padding: 20px;
+    background-color: #f5f8fa;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+  
+  .account__username {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: gray;
+    margin-left: 1rem;
+    
+  }
+  
+  .account__displayname > h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+    margin-left: 1rem;
+  }
+
+  
+  .account__badge {
+    font-size: 14px !important;
+    color: var(--dwidder-color);
+  }
+  
+  @media screen and (max-width: 420px) {
+    .account__info {
+      display:none;
+    }
+  }
