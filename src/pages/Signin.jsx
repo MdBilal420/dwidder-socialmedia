@@ -1,20 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './pages.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginPending, loginSuccess, loginFail } from '../features/users/usersSlice';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Alert from '@material-ui/lab/Alert';
+import { getUser } from '../features/users/utils';
+
 
 const Signin = () => {
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const { isLoading, isAuth, error } = useSelector(state => state.login)
+
+
+    const [user, setUser] = useState({ email: "", password: "" })
+    const { email, password } = user
+
+
+    const handleChange = (e) => {
+        setUser({ ...user, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log(email, password);
+
+        dispatch(loginPending())
+        try {
+            const isAuth = await getUser({ email, password })
+            console.log(isAuth)
+            if (isAuth.status === 200) {
+                dispatch(loginSuccess())
+                navigate('/home')
+            }
+
+        } catch (error) {
+            console.log(error);
+            dispatch(loginFail("Login Failed"))
+        }
+    }
+
     return (
         <div className="login-container">
-            <form className="form">
-                <h1 style={{ color: "#080808", marginBottom: "2rem" }}>Log in to Dwidder</h1>
-                <label style={{ color: "#080808" }}><h3>Email</h3></label>
-                <input type="text" placeholder="Email" />
+            <form className="form" onSubmit={handleSubmit}>
+                <h1>Log in to Dwidder</h1>
+                {error && <Alert severity="error" variant="standard">{error}</Alert>}
+                <label><h3>Email</h3></label>
+                <input type="email" name="email" placeholder="Email" value={email} onChange={handleChange} />
 
-                <label style={{ color: "#080808" }}><h3>Password</h3></label>
-                <input type="text" placeholder="Password" />
+                <label><h3>Password</h3></label>
+                <input type="text" name="password" placeholder="Password" value={password} onChange={handleChange} />
 
-                <button type="submit" value="Submit"><h3>Submit</h3></button>
+                <button type="submit" value="Submit">{!isLoading ? <h3>Submit</h3> : <CircularProgress />}</button>
+
                 <Link style={{ textDecoration: "none", color: "#080808" }} to="/signup"><h4>Sign up for Dwidder</h4></Link>
             </form>
         </div>

@@ -18,7 +18,7 @@ div .form{
 }
 
 div img {
-    text-align: center;
+    text-align: center; 
     
 }
 
@@ -30,12 +30,21 @@ div img {
   position: absolute;
 }
 
+.form h1{
+    color: #080808; 
+    margin-bottom: 2rem;
+    font-family: cursive;
+}
+
+.form label {
+    color: #080808
+}
+
 input{
     width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #080808;
   border-radius: 20px;
   box-sizing: border-box;
 }
