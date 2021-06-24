@@ -9,11 +9,19 @@ import Toolbar from '@material-ui/core/Toolbar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppBar from '@material-ui/core/AppBar';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 const Sidebar = () => {
+
+    const navigate = useNavigate()
+
+    const logout = () => {
+        localStorage.removeItem('token')
+        navigate('/')
+    }
+
     return (
         <>
             <div className="sidebar">
@@ -28,9 +36,11 @@ const Sidebar = () => {
                     <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
                 </Link>
                 <Account />
-                <Link to="/" style={{ color: "#50b7f5", textDecoration: "none" }}>
+
+                <span onClick={logout}>
                     <SidebarOption Icon={ExitToAppIcon} text="Logout" />
-                </Link>
+                </span>
+
             </div>
             <div className="appbar">
                 <AppBar position="fixed" color="primary" style={{ top: "auto", bottom: 0, backgroundColor: "#e6ecf0" }} >
@@ -44,9 +54,9 @@ const Sidebar = () => {
                         <Link to='/notifications' style={{ color: "#50b7f5", textDecoration: "none" }}>
                             <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
                         </Link>
-                        <Link to="/" style={{ color: "#50b7f5", textDecoration: "none" }}>
-                            <SidebarOption Icon={ExitToAppIcon} text="Logout" />
-                        </Link>
+
+                        <SidebarOption onClick={logout} Icon={ExitToAppIcon} text="Logout" />
+
                     </Toolbar>
                 </AppBar>
             </div>

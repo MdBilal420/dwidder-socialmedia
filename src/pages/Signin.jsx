@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './pages.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginPending, loginSuccess, loginFail } from '../features/users/usersSlice';
+import { loginPending, loginSuccess, loginFail } from '../features/auth/authSlice';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
-import { getUser } from '../features/users/utils';
+import { userLogin } from '../api/userApi';
+import { getUserProfile } from '../features/user/userAction';
 
 
 const Signin = () => {
@@ -13,10 +14,14 @@ const Signin = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { isLoading, isAuth, error } = useSelector(state => state.login)
+    const { isLoading, error } = useSelector(state => state.login)
+
+    useEffect(() => {
+        localStorage.getItem("token") && navigate('/home')
+    }, [navigate])
 
 
-    const [user, setUser] = useState({ email: "", password: "" })
+    const [user, setUser] = useState({ email: "james@bond.com", password: "123456" })
     const { email, password } = user
 
 
@@ -30,10 +35,11 @@ const Signin = () => {
 
         dispatch(loginPending())
         try {
-            const isAuth = await getUser({ email, password })
+            const isAuth = await userLogin({ email, password })
             console.log(isAuth)
             if (isAuth.status === 200) {
                 dispatch(loginSuccess())
+                dispatch(getUserProfile())
                 navigate('/home')
             }
 

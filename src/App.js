@@ -6,6 +6,7 @@ import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 import Timeline from './pages/Timeline';
 import Notification from './pages/Notification';
+import { PrivateRoute } from './PrivateRoute';
 
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Timeline />} />
-        <Route path="/notifications" element={<Notification />} />
+        <PrivateRoute path="/home" element={<Home />} />
+        <PrivateRoute path="/profile" element={<Timeline />} />
+        <PrivateRoute path="/notifications" element={<Notification />} />
       </Routes>
     </div>
   );
