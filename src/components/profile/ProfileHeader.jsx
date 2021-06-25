@@ -9,7 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import LinkIcon from '@material-ui/icons/Link';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import DateRangeIcon from '@material-ui/icons/DateRange';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import './profileheader.css'
@@ -63,21 +62,23 @@ const ProfileHeader = () => {
                     </Typography>
                     <div style={{ display: "flex", justifyContent: "start" }}>
                         <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><LocationOnIcon /><p>India</p></div>
-                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><LinkIcon /><Button size="small" color="primary">
-                            google.com
-                        </Button></div>
+                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><LinkIcon />
+                            <p>
+                                google.com
+                            </p>
+                        </div>
                         <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><DateRangeIcon /><p>21/06/1990</p></div>
 
                     </div>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <p>
                     25 Followers
-                </Button>
-                <Button size="small" color="primary">
+                </p>
+                <p>
                     15 Following
-                </Button>
+                </p>
             </CardActions>
         </Card >
     )

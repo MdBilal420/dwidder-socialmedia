@@ -1,32 +1,77 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from 'axios';
 
+export const login = createAsyncThunk('user/login', async (formData, thunkAPI) => {
+    const res = await axios.post('http://localhost:5000/api/auth', formData)
+
+    if (res.data) {
+        const user = res.data.user
+        const token = res.data.token
+        localStorage.setItem('user', JSON.stringify({ user: user, token: token }))
+        if (token) {
+            axios.defaults.headers.common["Authorization"] = token;
+        } else {
+            delete axios.defaults.headers.common["Authorization"];
+        }
+    }
+
+    return res.data
+});
+
+export const getUser = createAsyncThunk('user/getUser', async () => {
+    const res = await axios.get('http://localhost:5000/api/auth')
+    console.log(res.data)
+    return res.data
+});
 
 const initialState = {
-    user: {},
-    isLoading: false,
-    error: ''
+    user: null,
+    status: 'idle',
+    error: null
 }
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        getUserPending: (state) => {
-            state.isLoading = true
+        logout: (state) => {
+            state.user = null;
+            state.status = 'idle';
+            state.error = null
+        }
+    },
+    extraReducers: {
+
+        [login.pending]: (state) => {
+            state.status = 'loading'
         },
-        getUserSuccess: (state, { payload }) => {
-            state.isLoading = false;
-            state.user = payload;
-            state.error = ''
+
+        [login.fulfilled]: (state, action) => {
+            state.user = action.payload.user;
+            state.status = 'idle'
         },
-        getUserFail: (state, { payload }) => {
-            state.isLoading = false;
-            state.error = payload
+
+        [login.rejected]: (state, action) => {
+            state.status = 'error';
+            state.error = action.error.message
+        },
+
+        [getUser.pending]: (state) => {
+            state.status = 'loading'
+        },
+
+        [getUser.fulfilled]: (state, action) => {
+            state.user = action.payload;
+            state.status = 'idle'
+        },
+
+        [getUser.rejected]: (state, action) => {
+            state.status = 'error';
+            state.error = action.error.message
         }
     }
 })
 
 
-export const { getUserPending, getUserSuccess, getUserFail } = userSlice.actions
 
 export default userSlice.reducer

@@ -18,15 +18,15 @@ const Sidebar = () => {
     const navigate = useNavigate()
 
     const logout = () => {
-        localStorage.removeItem('token')
-        navigate('/')
+        localStorage.removeItem('user')
+        navigate('/login')
     }
 
     return (
         <>
             <div className="sidebar">
                 <TwitterIcon className="sidebar__twitterIcon" />
-                <Link to='/home' style={{ color: "white", textDecoration: "none" }}>
+                <Link to='/' style={{ color: "white", textDecoration: "none" }}>
                     <SidebarOption active Icon={HomeIcon} text="Home" />
                 </Link>
                 <Link to='/profile' style={{ color: "#50b7f5", textDecoration: "none" }}>
@@ -45,7 +45,7 @@ const Sidebar = () => {
             <div className="appbar">
                 <AppBar position="fixed" color="primary" style={{ top: "auto", bottom: 0, backgroundColor: "#e6ecf0" }} >
                     <Toolbar style={{ justifyContent: "space-around" }}>
-                        <Link to='/home' style={{ color: "white", textDecoration: "none" }}>
+                        <Link to='/' style={{ color: "white", textDecoration: "none" }}>
                             <SidebarOption active Icon={HomeIcon} text="Home" />
                         </Link>
                         <Link to='/profile' style={{ color: "#50b7f5", textDecoration: "none" }}>

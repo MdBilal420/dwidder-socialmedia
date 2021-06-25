@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './pages.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginPending, loginSuccess, loginFail } from '../features/auth/authSlice';
+import { login } from '../features/user/userSlice'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
-import { userLogin } from '../api/userApi';
-import { getUserProfile } from '../features/user/userAction';
+import { unwrapResult } from '@reduxjs/toolkit';
+
 
 
 const Signin = () => {
@@ -14,38 +14,24 @@ const Signin = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { isLoading, error } = useSelector(state => state.login)
+    const { status, error } = useSelector(state => state.user)
 
-    useEffect(() => {
-        localStorage.getItem("token") && navigate('/home')
-    }, [navigate])
-
-
-    const [user, setUser] = useState({ email: "james@bond.com", password: "123456" })
-    const { email, password } = user
+    const [formData, setFormData] = useState({ email: "james@bond.com", password: "123456" })
+    const { email, password } = formData
 
 
     const handleChange = (e) => {
-        setUser({ ...user, [e.target.name]: e.target.value })
+        setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(email, password);
-
-        dispatch(loginPending())
         try {
-            const isAuth = await userLogin({ email, password })
-            console.log(isAuth)
-            if (isAuth.status === 200) {
-                dispatch(loginSuccess())
-                dispatch(getUserProfile())
-                navigate('/home')
-            }
-
+            let result = await dispatch(login(formData))
+            unwrapResult(result)
+            navigate("/")
         } catch (error) {
             console.log(error);
-            dispatch(loginFail("Login Failed"))
         }
     }
 
@@ -60,7 +46,7 @@ const Signin = () => {
                 <label><h3>Password</h3></label>
                 <input type="text" name="password" placeholder="Password" value={password} onChange={handleChange} />
 
-                <button type="submit" value="Submit">{!isLoading ? <h3>Submit</h3> : <CircularProgress />}</button>
+                <button type="submit" value="Submit">{status !== 'loading' ? <h3>Submit</h3> : <CircularProgress />}</button>
 
                 <Link style={{ textDecoration: "none", color: "#080808" }} to="/signup"><h4>Sign up for Dwidder</h4></Link>
             </form>
