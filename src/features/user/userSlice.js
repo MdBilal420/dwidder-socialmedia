@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-export const login = createAsyncThunk('user/login', async (formData, thunkAPI) => {
+export const login = createAsyncThunk('user/login', async (formData) => {
     const res = await axios.post('http://localhost:5000/api/auth', formData)
 
     if (res.data) {
@@ -20,7 +20,6 @@ export const login = createAsyncThunk('user/login', async (formData, thunkAPI) =
 
 export const getUser = createAsyncThunk('user/getUser', async () => {
     const res = await axios.get('http://localhost:5000/api/auth')
-    console.log(res.data)
     return res.data
 });
 

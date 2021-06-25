@@ -4,8 +4,14 @@ import axios from "axios"
 
 export const getPosts = createAsyncThunk('feed/getPosts', async () => {
     const res = await axios.get(`http://localhost:5000/api/posts`);
-
     return res.data;
+})
+
+export const addPost = createAsyncThunk('feed/addPost', async (postContent) => {
+    const res = await axios.post(`http://localhost:5000/api/posts`, {
+        text: postContent
+    })
+    return res.data
 })
 
 const initialState = {
@@ -33,6 +39,11 @@ const postsSlice = createSlice({
             state.status = 'error';
             state.error = action.error.message
         },
+
+        [addPost.fulfilled]: (state, action) => {
+            console.log(action.payload)
+            state.posts.unshift(action.payload)
+        }
     }
 })
 

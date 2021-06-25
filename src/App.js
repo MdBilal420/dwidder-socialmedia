@@ -10,6 +10,7 @@ import Notification from './pages/Notification';
 import { PrivateRoute } from './PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { getUser } from './features/user/userSlice';
+import { getPosts } from './features/posts/postsSlice';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           delete axios.defaults.headers.common["Authorization"];
         }
         await dispatch(getUser())
+        await dispatch(getPosts())
       } else {
         navigate("/login")
       }
