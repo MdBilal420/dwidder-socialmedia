@@ -12,8 +12,10 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import Typography from '@material-ui/core/Typography';
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import './profileheader.css'
+import EditProfileModal from './EditProfileModal';
+import { useSelector } from 'react-redux';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         width: "100%"
     },
@@ -23,12 +25,20 @@ const useStyles = makeStyles({
     large: {
         width: "4rem",
         height: "4rem",
-    }
-});
+    }, backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+    },
+}));
 
 
 const ProfileHeader = () => {
     const classes = useStyles();
+
+
+    const { user } = useSelector(state => state.user)
+    console.log(user);
+
     return (
         <Card className={classes.root}>
             <CardActionArea className={classes.root}>
@@ -47,14 +57,16 @@ const ProfileHeader = () => {
                         <div className="profile__account__info">
                             <div className="profile__account__displayname">
                                 <h2>
-                                    Bilal
+                                    {user.username}
                                     <VerifiedUserIcon className="profile__account__badge" />
                                 </h2>
                             </div>
                             <div className="profile__account__username">
-                                <h3>@bilal</h3>
+                                <h3>@{user.username}</h3>
                             </div>
                         </div>
+                        <EditProfileModal style={{ float: "right", marginRight: "0" }} />
+
                     </div>
                     <Typography variant="body1" color="textPrimary" component="h4">
                         Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
@@ -80,6 +92,7 @@ const ProfileHeader = () => {
                     15 Following
                 </p>
             </CardActions>
+
         </Card >
     )
 }

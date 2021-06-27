@@ -55,7 +55,13 @@ const Sidebar = () => {
                             <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
                         </Link>
 
-                        <SidebarOption onClick={logout} Icon={ExitToAppIcon} text="Logout" />
+                        <span style={{ color: "#50b7f5" }}>
+                            <SidebarOption
+                                onClick={logout}
+                                Icon={ExitToAppIcon}
+                                text="Logout"
+                            />
+                        </span>
 
                     </Toolbar>
                 </AppBar>

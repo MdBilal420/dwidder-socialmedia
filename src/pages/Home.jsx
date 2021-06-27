@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPosts } from '../features/posts/postsSlice'
 import Sidebar from '../components/sidebar/Sidebar'
 import '../App.css'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
 
 
     const { user } = useSelector(state => state.user)
     const posts = useSelector(state => state.posts)
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -19,8 +22,11 @@ const Home = () => {
             (async () => {
                 await dispatch(getPosts())
             })()
+        } else {
+            localStorage.removeItem('user')
+            navigate("/login")
         }
-    }, [dispatch, user])
+    }, [dispatch, user, navigate])
 
     return (
         <div className="home">

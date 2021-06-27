@@ -8,11 +8,12 @@ import PostContent from './PostContent';
 
 
 const Post = ({ post }) => {
+    console.log(post)
 
     return (
         <div className="post">
             <div className="post__avatar">
-                <Avatar src='https://images.unsplash.com/photo-1581090700227-1e37b190418e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80' />
+                <Avatar style={{ backgroundColor: "blue" }}>{post.username[0].toUpperCase()}</Avatar>
             </div>
             <div className="post__body">
                 <PostContent post={post} />
