@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../features/profile/profileSlice'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,9 +16,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const EditProfile = () => {
+const EditProfile = ({ setOpen }) => {
 
     const classes = useStyles();
+    const dispatch = useDispatch()
+    const { user } = useSelector(state => state.user)
 
     const [formData, setFormData] = useState({
         bio: "Add Bio",
@@ -32,14 +36,13 @@ const EditProfile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
         try {
-            const res = await axios.post('http://localhost:5000/api/profile', formData)
-            console.log(res);
+            await axios.post('http://localhost:5000/api/profile', formData)
+            await dispatch(getProfile(user._id))
         } catch (error) {
             console.log(error);
         }
-
+        setOpen(false)
     }
 
 

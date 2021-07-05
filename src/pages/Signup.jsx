@@ -6,7 +6,7 @@ import './pages.css'
 
 const Signup = () => {
 
-    const [formData, setFormData] = useState({ username: "", email: "", password: "" })
+    const [formData, setFormData] = useState({ username: "admin", email: "admin@gmail.com", password: "123456" })
     const { username, email, password } = formData
 
     const navigate = useNavigate()
@@ -18,8 +18,8 @@ const Signup = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:5000/api/users/', formData)
-            console.log(res)
+            await axios.post('http://localhost:5000/api/users/', formData)
+
             navigate("/login")
         } catch (error) {
             console.log(error)

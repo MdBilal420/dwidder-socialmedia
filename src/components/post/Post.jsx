@@ -1,25 +1,93 @@
 import React from 'react'
 import './post.css'
 import { Avatar } from "@material-ui/core";
-import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import DeleteIcon from '@material-ui/icons/Delete';
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import PostContent from './PostContent';
-
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../features/profile/profileSlice';
+import { addLike } from '../../features/posts/postsSlice';
+import { removeLike } from '../../features/posts/postsSlice';
+import { removePost } from '../../features/profile/profileSlice'
 
 
 const Post = ({ post }) => {
-    console.log(post)
+
+    const { user } = useSelector(state => state.user)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const location = useLocation();
+
+    const getUserProfile = () => {
+        try {
+            dispatch(getProfile(post.user))
+            navigate(`/profile/${post.user}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const addToFav = async () => {
+        try {
+            dispatch(addLike(post))
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+
+    const removeFromFav = async () => {
+        try {
+            dispatch(removeLike(post))
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    const deletePost = async () => {
+        try {
+            await dispatch(removePost(post))
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    const checkLike = () => {
+        return post.likes.find((like) => like.user === user._id)
+    }
+
+    const checkAuthor = () => {
+        return post.user === user._id
+    }
+
 
     return (
         <div className="post">
             <div className="post__avatar">
-                <Avatar style={{ backgroundColor: "blue" }}>{post.username[0].toUpperCase()}</Avatar>
+                <Avatar
+                    style={{ backgroundColor: "blue" }}
+                    onClick={getUserProfile}
+                >
+                    {post.username[0].toUpperCase()}
+                </Avatar>
             </div>
             <div className="post__body">
                 <PostContent post={post} />
                 <div className="post__footer">
-                    <ChatBubbleOutlineIcon fontSize="small" />
-                    <FavoriteBorderIcon fontSize="small" />
+                    {checkLike()
+                        ?
+                        <FavoriteIcon fontSize="default" onClick={removeFromFav} />
+                        :
+                        <FavoriteBorderIcon fontSize="default" onClick={addToFav} />
+                    }
+                    {location.pathname !== "/" && checkAuthor() ?
+                        <DeleteIcon fontSize="default" onClick={deletePost} />
+                        :
+                        ""
+                    }
+
                 </div>
             </div>
         </div>

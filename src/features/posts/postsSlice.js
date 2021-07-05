@@ -14,6 +14,17 @@ export const addPost = createAsyncThunk('feed/addPost', async (postContent) => {
     return res.data
 })
 
+
+export const addLike = createAsyncThunk('feed/post/like', async (post) => {
+    const res = await axios.put(`http://localhost:5000/api/posts/like/${post._id}`)
+    return res.data
+})
+
+export const removeLike = createAsyncThunk('feed/post/unlike', async (post) => {
+    const res = await axios.put(`http://localhost:5000/api/posts/unlike/${post._id}`)
+    return res.data
+})
+
 const initialState = {
     posts: [],
     status: 'idle',
@@ -41,8 +52,17 @@ const postsSlice = createSlice({
         },
 
         [addPost.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.posts.unshift(action.payload)
+        },
+
+        [addLike.fulfilled]: (state, action) => {
+            const postIndex = state.posts.findIndex((post) => post._id === action.payload._id)
+            state.posts[postIndex] = action.payload
+        },
+
+        [removeLike.fulfilled]: (state, action) => {
+            const postIndex = state.posts.findIndex((post) => post._id === action.payload._id)
+            state.posts[postIndex] = action.payload
         }
     }
 })

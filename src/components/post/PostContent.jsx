@@ -7,7 +7,7 @@ const PostContent = ({ post }) => {
         <div className="post__header">
             <div className="post__headerText">
                 <h3>
-                    {post.username}
+                    {post.username.toUpperCase()}
                     <span className="post__headerSpecial">
                         <VerifiedUserIcon className="post__badge" /> @{post.username}
                     </span>

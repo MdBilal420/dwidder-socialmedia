@@ -28,7 +28,7 @@ const Account = () => {
             <div className="account__info">
                 <div className="account__displayname">
                     <h3>
-                        {user.username}
+                        {user.username.toUpperCase()}
                         <span>
                             <VerifiedUserIcon className="account__badge" />
                         </span>

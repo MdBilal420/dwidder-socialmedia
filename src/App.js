@@ -7,6 +7,7 @@ import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 import Timeline from './pages/Timeline';
 import Notification from './pages/Notification';
+import ViewPost from './components/post/ViewPost';
 import { PrivateRoute } from './PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { getUser } from './features/user/userSlice';
@@ -17,6 +18,7 @@ function App() {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
 
   useEffect(() => {
     (async () => {
@@ -45,9 +47,11 @@ function App() {
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <PrivateRoute path="/" element={<Home />} />
-        <PrivateRoute path="/profile" element={<Timeline />} />
+        <PrivateRoute path="/profile/:userId" element={<Timeline />} />
+        <PrivateRoute path="/post/:postId" element={<ViewPost />} />
         <PrivateRoute path="/notifications" element={<Notification />} />
       </Routes>
+
     </div>
   );
 }

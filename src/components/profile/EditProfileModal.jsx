@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import EditProfile from './EditProfile';
+import './profile.css'
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -20,8 +22,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditProfileModal() {
+
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const { user } = useSelector(state => state.user)
+    const { profile } = useSelector(state => state.profile)
+    const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -32,10 +37,15 @@ export default function EditProfileModal() {
     };
 
     return (
-        <div>
-            <span type="button" onClick={handleOpen}>
-                react-transition-group
+        <div>{profile.user._id === user._id
+            ?
+            <span type="button" onClick={handleOpen} className="edit__profile">
+                Edit Profile
             </span>
+            :
+            ""
+        }
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -51,7 +61,7 @@ export default function EditProfileModal() {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <h2 id="transition-modal-title" style={{ color: "#50b7f5" }}>Edit Profile</h2>
-                        <div id="transition-modal-description"><EditProfile /></div>
+                        <div id="transition-modal-description"><EditProfile setOpen={setOpen} /></div>
                     </div>
                 </Fade>
             </Modal>

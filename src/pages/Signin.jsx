@@ -16,7 +16,7 @@ const Signin = () => {
 
     const { status, error } = useSelector(state => state.user)
 
-    const [formData, setFormData] = useState({ email: "james@bond.com", password: "123456" })
+    const [formData, setFormData] = useState({ email: "admin@gmail.com", password: "123456" })
     const { email, password } = formData
 
 

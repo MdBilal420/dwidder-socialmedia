@@ -15,8 +15,8 @@ const Postbox = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(postContent)
         await dispatch(addPost(postContent))
+        setPostContent("")
     }
 
     return (
@@ -26,12 +26,12 @@ const Postbox = () => {
                     <Avatar style={{ backgroundColor: "brown" }}>{user.username[0].toUpperCase()}</Avatar>
                     <InputBase
                         className="text-area"
-                        placeholder="What's happening?"
+                        placeholder=" What's happening?"
                         onChange={e => setPostContent(e.target.value)}
                         value={postContent}
                     />
                 </div>
-                <Button type="submit" className="postbox__button">dweed</Button>
+                <Button type="submit" className="postbox__button">POST</Button>
             </form>
         </div>
     )

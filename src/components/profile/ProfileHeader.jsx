@@ -13,7 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import './profileheader.css'
 import EditProfileModal from './EditProfileModal';
+import FollowAction from './FollowAction';
 import { useSelector } from 'react-redux';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,15 +31,17 @@ const useStyles = makeStyles((theme) => ({
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
+    footer: {
+        display: "flex",
+        justifyContent: "space-between"
+    }
 }));
 
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ profile }) => {
     const classes = useStyles();
 
-
     const { user } = useSelector(state => state.user)
-    console.log(user);
 
     return (
         <Card className={classes.root}>
@@ -51,46 +55,55 @@ const ProfileHeader = () => {
                         <div>
                             <Avatar
                                 className={classes.large}
-                                src='https://images.unsplash.com/photo-1581090700227-1e37b190418e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'
-                            />
+                                style={{ backgroundColor: "blue" }}
+                            >
+                                {profile.user.username[0].toUpperCase()}
+                            </Avatar>
                         </div>
                         <div className="profile__account__info">
                             <div className="profile__account__displayname">
                                 <h2>
-                                    {user.username}
+                                    {profile.user.username.toUpperCase()}
                                     <VerifiedUserIcon className="profile__account__badge" />
                                 </h2>
                             </div>
                             <div className="profile__account__username">
-                                <h3>@{user.username}</h3>
+                                <h3>@{profile.user.username}</h3>
                             </div>
                         </div>
-                        <EditProfileModal style={{ float: "right", marginRight: "0" }} />
-
                     </div>
-                    <Typography variant="body1" color="textPrimary" component="h4">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                    <Typography style={{ alignItems: "center", fontSize: "1rem" }}>
+                        {profile.bio}
                     </Typography>
-                    <div style={{ display: "flex", justifyContent: "start" }}>
-                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><LocationOnIcon /><p>India</p></div>
+                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}>
+                            <LocationOnIcon /><p>{profile.location}</p></div>
                         <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><LinkIcon />
                             <p>
-                                google.com
+                                {profile.website}
                             </p>
                         </div>
-                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><DateRangeIcon /><p>21/06/1990</p></div>
+                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}>
+                            <DateRangeIcon /><p>{profile.birthdate}</p></div>
 
                     </div>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <p>
-                    25 Followers
-                </p>
-                <p>
-                    15 Following
-                </p>
+            <CardActions className={classes.footer}>
+                <h4>
+                    {profile.followers.length >= 1 ? profile.followers.length : 0} Followers
+                    {"             ||            "}
+                    {profile.following.length >= 1 ? profile.following.length : 0} Following
+                </h4>
+
+                {
+                    user._id === profile.user._id
+                        ?
+                        <EditProfileModal style={{ float: "right", marginRight: "0" }} />
+                        :
+                        <FollowAction profile={profile} />
+                }
+
             </CardActions>
 
         </Card >

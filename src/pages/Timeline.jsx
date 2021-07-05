@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../components/sidebar/Sidebar'
 import Profile from '../components/profile/Profile'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+
 
 const Timeline = () => {
 
@@ -10,18 +11,18 @@ const Timeline = () => {
 
     const navigate = useNavigate()
 
-    const logout = () => {
-        localStorage.removeItem('user')
-        navigate('/login')
-    }
 
-    if (!user) {
-        logout()
-    }
+    useEffect(() => {
+        if (!user) {
+            localStorage.removeItem('user')
+            navigate('/login')
+        }
+    }, [navigate, user])
+
 
     return (
         <div className="home">
-            <Sidebar />
+            {user && <Sidebar />}
             <Profile />
         </div>
     )

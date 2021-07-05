@@ -3,23 +3,20 @@ import ProfileHeader from './ProfileHeader'
 // import Post from '../post/Post'
 import './profile.css'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import Post from '../post/Post'
 
 
 const Profile = () => {
 
-    const { user } = useSelector(state => state.user)
-    const navigate = useNavigate()
-
-    if (!user) {
-        localStorage.removeItem('user')
-        navigate("/login")
-    }
+    const { profile, posts } = useSelector(state => state.profile)
 
 
     return (
         <div className="profile">
-            <ProfileHeader />
+            {profile && <ProfileHeader profile={profile} />}
+            {
+                posts && posts.map((post) => <Post post={post} key={post._id} />)
+            }
 
         </div>
     )

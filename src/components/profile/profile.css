@@ -25,3 +25,11 @@
     border: 1px solid var(--dwidder-background);
     padding: 15px 20px;
 }
+
+.edit__profile{
+    border: 3px solid #50b7f5; 
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+}

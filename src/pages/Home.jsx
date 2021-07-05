@@ -1,8 +1,10 @@
 import React from 'react'
+import axios from 'axios'
 import Feed from '../components/feed/Feed'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPosts } from '../features/posts/postsSlice'
+import { getProfile } from '../features/profile/profileSlice';
 import Sidebar from '../components/sidebar/Sidebar'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
@@ -12,6 +14,9 @@ const Home = () => {
 
     const { user } = useSelector(state => state.user)
     const posts = useSelector(state => state.posts)
+    const { profile } = useSelector(state => state.profile)
+
+    console.log(profile)
 
     const navigate = useNavigate()
 
@@ -19,19 +24,41 @@ const Home = () => {
 
     useEffect(() => {
         if (user) {
-            (async () => {
-                await dispatch(getPosts())
-            })()
+            try {
+                (async () => {
+                    await dispatch(getPosts())
+                })()
+            } catch (error) {
+                console.error(error);
+            }
         } else {
             localStorage.removeItem('user')
             navigate("/login")
         }
-    }, [dispatch, user, navigate])
+    }, [dispatch, user, navigate,])
+
+    useEffect(() => {
+        if (!profile) {
+            try {
+                (async () => {
+                    await axios.post('http://localhost:5000/api/profile', {
+                        bio: "Add Bio",
+                        birthdate: "01-01-1990",
+                        location: "unknown",
+                        website: "https://"
+                    })
+                    await dispatch(getProfile(user._id))
+                })()
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    }, [dispatch, profile, user])
 
     return (
         <div className="home">
-            <Sidebar />
-            <Feed posts={posts} />
+            {user && <Sidebar />}
+            {user && <Feed posts={posts} />}
         </div>
     )
 }
