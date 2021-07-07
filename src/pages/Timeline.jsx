@@ -11,7 +11,6 @@ const Timeline = () => {
 
     const navigate = useNavigate()
 
-
     useEffect(() => {
         if (!user) {
             localStorage.removeItem('user')
