@@ -3,7 +3,7 @@ import Sidebar from '../components/sidebar/Sidebar'
 import Profile from '../components/profile/Profile'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import "../App.css"
 
 const Timeline = () => {
 
@@ -20,7 +20,7 @@ const Timeline = () => {
 
 
     return (
-        <div className="home">
+        <div className="container">
             {user && <Sidebar />}
             <Profile />
         </div>

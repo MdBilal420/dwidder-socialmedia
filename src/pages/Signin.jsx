@@ -39,7 +39,7 @@ const Signin = () => {
         <div className="login-container">
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Log in to Dwidder</h1>
-                {error && <Alert severity="error" variant="standard">{error}</Alert>}
+                {error && <Alert severity="error" variant="standard">Incorrect Email/Password</Alert>}
                 <label><h3>Email</h3></label>
                 <input type="email" name="email" placeholder="Email" value={email} onChange={handleChange} />
 

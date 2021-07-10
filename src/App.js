@@ -7,7 +7,8 @@ import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 import Timeline from './pages/Timeline';
 import Notification from './pages/Notification';
-import ViewPost from './components/post/ViewPost';
+import Followers from './pages/Followers'
+import Following from './pages/Following'
 import { PrivateRoute } from './PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { getUser } from './features/user/userSlice';
@@ -48,7 +49,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <PrivateRoute path="/" element={<Home />} />
         <PrivateRoute path="/profile/:userId" element={<Timeline />} />
-        <PrivateRoute path="/post/:postId" element={<ViewPost />} />
+        <PrivateRoute path="/followers" element={<Followers />} />
+        <PrivateRoute path="/following" element={<Following />} />
         <PrivateRoute path="/notifications" element={<Notification />} />
       </Routes>
 

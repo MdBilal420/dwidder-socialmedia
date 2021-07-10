@@ -56,7 +56,7 @@ const Home = () => {
     }, [dispatch, profile, user])
 
     return (
-        <div className="home">
+        <div className="container">
             {user && <Sidebar />}
             {user && <Feed posts={posts} />}
         </div>

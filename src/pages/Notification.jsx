@@ -4,7 +4,7 @@ import Sidebar from '../components/sidebar/Sidebar'
 
 const Notification = () => {
     return (
-        <div className="home">
+        <div className="containerss">
             <Sidebar />
 
         </div>

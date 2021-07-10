@@ -62,12 +62,12 @@ const Post = ({ post }) => {
         return post.user === user._id
     }
 
-
+    const color = "#" + Math.floor(Math.random() * 0x1000000).toString(16)
     return (
         <div className="post">
             <div className="post__avatar">
                 <Avatar
-                    style={{ backgroundColor: "blue" }}
+                    style={{ backgroundColor: color }}
                     onClick={getUserProfile}
                 >
                     {post.username[0].toUpperCase()}

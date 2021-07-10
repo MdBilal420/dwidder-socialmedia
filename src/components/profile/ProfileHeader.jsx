@@ -15,6 +15,7 @@ import './profileheader.css'
 import EditProfileModal from './EditProfileModal';
 import FollowAction from './FollowAction';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +43,10 @@ const ProfileHeader = ({ profile }) => {
     const classes = useStyles();
 
     const { user } = useSelector(state => state.user)
+    const navigate = useNavigate()
+
+    console.log("followers", profile.followers)
+    console.log("following", profile.following)
 
     return (
         <Card className={classes.root}>
@@ -72,28 +77,41 @@ const ProfileHeader = ({ profile }) => {
                             </div>
                         </div>
                     </div>
-                    <Typography style={{ alignItems: "center", fontSize: "1rem" }}>
+                    <Typography style={{ alignItems: "center", fontSize: "1.2rem", fontWeight: "bolder" }}>
                         {profile.bio}
                     </Typography>
-                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", padding: "1rem" }}>
                         <div style={{ display: "flex", alignItems: "center", padding: "5px" }}>
-                            <LocationOnIcon /><p>{profile.location}</p></div>
-                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}><LinkIcon />
-                            <p>
-                                {profile.website}
-                            </p>
+                            <LocationOnIcon fontSize="default" /><h3>: {profile.location}</h3></div>
+                        <div style={{ display: "flex", alignItems: "center", padding: "5px" }}>
+                            <LinkIcon fontSize="default" />
+                            <h3>
+                                : {profile.website}
+                            </h3>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", padding: "5px" }}>
-                            <DateRangeIcon /><p>{profile.birthdate}</p></div>
-
+                            <DateRangeIcon fontSize="default" />
+                            <h3>: {profile.birthdate}</h3></div>
                     </div>
                 </CardContent>
             </CardActionArea>
             <CardActions className={classes.footer}>
                 <h4>
-                    {profile.followers.length >= 1 ? profile.followers.length : 0} Followers
+                    <span
+                        style={{ cursor: "pointer" }}
+                        onClick={() => navigate('/followers')}
+                    >
+                        {profile.followers.length >= 1 ? profile.followers.length : 0}
+                        Followers
+                    </span>
                     {"             ||            "}
-                    {profile.following.length >= 1 ? profile.following.length : 0} Following
+                    <span
+                        style={{ cursor: "pointer" }}
+                        onClick={() => navigate('/following')}
+                    >
+                        {profile.following.length >= 1 ? profile.following.length : 0}
+                        Following
+                    </span>
                 </h4>
 
                 {

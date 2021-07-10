@@ -34,11 +34,11 @@ const FollowAction = ({ profile }) => {
             {checkFollow()
                 ?
                 <span onClick={unfollowProfile}
-                    className="edit__profile"
+                    className="sec__button"
                 >Unfollow</span>
                 :
                 <span onClick={followProfile}
-                    className="edit__profile"
+                    className="prm__button"
                 >follow</span>
             }
         </>
