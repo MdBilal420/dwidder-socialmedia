@@ -1,5 +1,4 @@
 .account{
-    margin-Top: 10rem;
     display: flex;
     align-items: flex-start;
     border: 1px solid var(--dwidder-background);

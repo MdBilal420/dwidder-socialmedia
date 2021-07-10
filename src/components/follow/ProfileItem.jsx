@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import "./follow.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getProfile } from '../../features/profile/profileSlice';
 
 
@@ -17,6 +17,7 @@ const ProfileItem = ({ profile }) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const location = useLocation()
     const user = useSelector(state => state.user)
 
     if (!user) {
@@ -28,6 +29,15 @@ const ProfileItem = ({ profile }) => {
         try {
             dispatch(getProfile(profile.user))
             navigate(`/profile/${profile.user}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const openProfile = () => {
+        try {
+            dispatch(getProfile(profile._id))
+            navigate(`/profile/${profile._id}`)
         } catch (error) {
             console.log(error)
         }
@@ -55,12 +65,23 @@ const ProfileItem = ({ profile }) => {
                     </div>
                 </div>
                 <ListItemSecondaryAction>
-                    <Button variant="outlined"
-                        style={{ color: "#50b7f5" }}
-                        onClick={getUserProfile}
-                    >
-                        View Profile
-                    </Button>
+                    {location.pathname === '/search' ?
+                        <Button variant="outlined"
+                            style={{ color: "#50b7f5" }}
+                            onClick={openProfile}
+                        >
+                            View Profile
+                        </Button>
+                        :
+
+                        <Button variant="outlined"
+                            style={{ color: "#50b7f5" }}
+                            onClick={getUserProfile}
+                        >
+                            View Profile
+                        </Button>
+                    }
+
                 </ListItemSecondaryAction>
             </ListItem>
         </>

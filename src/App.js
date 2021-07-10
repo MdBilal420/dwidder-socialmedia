@@ -9,6 +9,7 @@ import Timeline from './pages/Timeline';
 import Notification from './pages/Notification';
 import Followers from './pages/Followers'
 import Following from './pages/Following'
+import Search from './pages/Search'
 import { PrivateRoute } from './PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { getUser } from './features/user/userSlice';
@@ -52,6 +53,7 @@ function App() {
         <PrivateRoute path="/followers" element={<Followers />} />
         <PrivateRoute path="/following" element={<Following />} />
         <PrivateRoute path="/notifications" element={<Notification />} />
+        <PrivateRoute path="/search" element={<Search />} />
       </Routes>
 
     </div>

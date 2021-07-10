@@ -9,6 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppBar from '@material-ui/core/AppBar';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
+import SearchIcon from '@material-ui/icons/Search';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../features/profile/profileSlice';
@@ -48,9 +49,9 @@ const Sidebar = () => {
                     <SidebarOption Icon={PermIdentityIcon} text="Profile" />
                 </span>
 
-                {/* <Link to='/profile' style={{ color: "#50b7f5", textDecoration: "none" }}>
-                    <SidebarOption Icon={PermIdentityIcon} text="Profile" />
-                </Link> */}
+                <Link to='/search' style={{ color: "#50b7f5", textDecoration: "none" }}>
+                    <SidebarOption Icon={SearchIcon} text="Explore" />
+                </Link>
 
                 <Link to='/notifications' style={{ color: "#50b7f5", textDecoration: "none" }}>
                     <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
@@ -71,6 +72,11 @@ const Sidebar = () => {
                         <span style={{ color: "#50b7f5" }} onClick={() => navigate(`/profile/${user._id}`)}>
                             <SidebarOption Icon={PermIdentityIcon} text="Profile" />
                         </span>
+
+                        <Link to='/search' style={{ color: "#50b7f5", textDecoration: "none" }}>
+                            <SidebarOption Icon={SearchIcon} text="explore" />
+                        </Link>
+
                         <Link to='/notifications' style={{ color: "#50b7f5", textDecoration: "none" }}>
                             <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
                         </Link>

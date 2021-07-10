@@ -52,7 +52,7 @@
 }
 
 .account{
-    margin-Top: 10rem;
+    margin-Top: 5rem;
     display: flex;
     align-items: flex-start;
     border: 1px solid var(--dwidder-background);

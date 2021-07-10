@@ -46,6 +46,7 @@ const profileSlice = createSlice({
             state.error = action.payload;
             state.status = 'error'
         },
+
         [removePost.fulfilled]: (state, action) => {
             const x = state.posts.filter(post => post._id !== action.payload.postId)
             state.posts = x

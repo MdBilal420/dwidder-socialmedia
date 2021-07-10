@@ -1,6 +1,5 @@
 import React from 'react'
 import "./follow.css"
-
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import ProfileItem from './ProfileItem';
