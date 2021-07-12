@@ -23,7 +23,7 @@ const Signup = () => {
         e.preventDefault()
         setLoading(true)
         try {
-            await axios.post('http://localhost:5000/api/users/', formData)
+            await axios.post('https://dwidder-backend.herokuapp.com/api/users/', formData)
             setLoading(false)
             navigate("/login")
         } catch (error) {
