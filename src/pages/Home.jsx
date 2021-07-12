@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import Feed from '../components/feed/Feed'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,6 +17,7 @@ const Home = () => {
     const { profile } = useSelector(state => state.profile)
     const dispatch = useDispatch()
 
+    console.log("pro", profile)
 
     const navigate = useNavigate()
 
@@ -40,22 +40,12 @@ const Home = () => {
 
     useEffect(() => {
         if (!profile) {
-            try {
-                (async () => {
-                    await axios.post('https://dwidder-backend.herokuapp.com/api/profile', {
-                        bio: "Add Bio",
-                        birthdate: "01-01-1990",
-                        location: "unknown",
-                        website: "https://"
-                    })
-
-                    await dispatch(getProfile(user._id))
-                })()
-            } catch (error) {
-                console.error(error)
-            }
+            (async () => {
+                await dispatch(getProfile(user._id))
+            })()
         }
-    }, [dispatch, profile, user])
+
+    }, [dispatch, user, profile])
 
     return (
         <div className="container">
