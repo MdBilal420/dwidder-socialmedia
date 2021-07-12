@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 
 const Signup = () => {
 
-    const [formData, setFormData] = useState({ username: "admin", email: "admin@gmail.com", password: "123456" })
+    const [formData, setFormData] = useState({ username: "", email: "", password: "" })
     const { username, email, password } = formData
     const [loading, setLoading] = useState(false)
 
@@ -48,7 +48,7 @@ const Signup = () => {
 
                 <label><h3>Password</h3></label>
                 <TextField id="outlined-basic" label="Password" variant="outlined" className="input"
-                    type="text" placeholder="Password" name="password" value={password} onChange={handleChnage}
+                    type="password" placeholder="Password" name="password" value={password} onChange={handleChnage}
                 />
 
                 <button type="submit" value="Submit">{!loading ? <h2>Submit</h2> : <CircularProgress />}</button>

@@ -18,7 +18,7 @@ const Signin = () => {
 
     const { status, error } = useSelector(state => state.user)
 
-    const [formData, setFormData] = useState({ email: "admin@gmail.com", password: "123456" })
+    const [formData, setFormData] = useState({ email: "", password: "" })
     const { email, password } = formData
 
 
@@ -50,7 +50,7 @@ const Signin = () => {
 
                 <label><h3>Password</h3></label>
                 <TextField id="outlined-basic" label="Password" variant="outlined" className="input"
-                    type="text" name="password" placeholder="Password" value={password} onChange={handleChange}
+                    type="password" name="password" placeholder="Password" value={password} onChange={handleChange}
                 />
 
                 <button type="submit" value="Submit">{status !== 'loading' ? <h3>Submit</h3> : <CircularProgress />}</button>
