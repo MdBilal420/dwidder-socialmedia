@@ -62,7 +62,7 @@ const EditProfile = ({ setOpen }) => {
             <div>
                 <TextField
                     id="filled-basic"
-                    label="Birthdate (DD-MM-YEAR)"
+                    label="Birthdate (MM-DD-YEAR)"
                     variant="outlined"
                     name="birthdate"
                     onChange={handleChange}
