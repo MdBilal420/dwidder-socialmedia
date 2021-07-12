@@ -37,7 +37,7 @@ const EditProfile = ({ setOpen }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post('http://localhost:5000/api/profile', formData)
+            await axios.post('https://dwidder-backend.herokuapp.com/api/profile', formData)
             await dispatch(getProfile(user._id))
         } catch (error) {
             console.log(error);

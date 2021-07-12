@@ -9,8 +9,15 @@ import './postbox.css'
 const Postbox = () => {
 
     const [postContent, setPostContent] = useState("")
+    const [disable, setDisable] = useState(false)
     const dispatch = useDispatch()
     const { user } = useSelector(state => state.user)
+
+
+    const handleChange = (e) => {
+        setPostContent(e.target.value)
+        postContent.length > 120 ? setDisable(true) : setDisable(false)
+    }
 
 
     const handleSubmit = async (e) => {
@@ -27,11 +34,12 @@ const Postbox = () => {
                     <InputBase
                         className="text-area"
                         placeholder=" What's happening?"
-                        onChange={e => setPostContent(e.target.value)}
+                        onChange={handleChange}
                         value={postContent}
                     />
                 </div>
-                <Button type="submit" className="postbox__button">POST</Button>
+                <span className="content__length">{postContent.length}/120</span>
+                <Button type="submit" className="postbox__button" disabled={disable} >POST</Button>
             </form>
         </div>
     )

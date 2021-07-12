@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 export const login = createAsyncThunk('user/login', async (formData) => {
-    const res = await axios.post('http://localhost:5000/api/auth', formData)
+    const res = await axios.post('https://dwidder-backend.herokuapp.com/api/auth', formData)
 
     if (res.data) {
         const user = res.data.user
@@ -19,7 +19,7 @@ export const login = createAsyncThunk('user/login', async (formData) => {
 });
 
 export const getUser = createAsyncThunk('user/getUser', async () => {
-    const res = await axios.get('http://localhost:5000/api/auth')
+    const res = await axios.get('https://dwidder-backend.herokuapp.com/api/auth')
     return res.data
 });
 

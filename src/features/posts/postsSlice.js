@@ -3,12 +3,12 @@ import axios from "axios"
 
 
 export const getPosts = createAsyncThunk('feed/getPosts', async () => {
-    const res = await axios.get(`http://localhost:5000/api/posts`);
+    const res = await axios.get(`https://dwidder-backend.herokuapp.com/api/posts`);
     return res.data;
 })
 
 export const addPost = createAsyncThunk('feed/addPost', async (postContent) => {
-    const res = await axios.post(`http://localhost:5000/api/posts`, {
+    const res = await axios.post(`https://dwidder-backend.herokuapp.com/api/posts`, {
         text: postContent
     })
     return res.data
@@ -16,12 +16,12 @@ export const addPost = createAsyncThunk('feed/addPost', async (postContent) => {
 
 
 export const addLike = createAsyncThunk('feed/post/like', async (post) => {
-    const res = await axios.put(`http://localhost:5000/api/posts/like/${post._id}`)
+    const res = await axios.put(`https://dwidder-backend.herokuapp.com/api/posts/like/${post._id}`)
     return res.data
 })
 
 export const removeLike = createAsyncThunk('feed/post/unlike', async (post) => {
-    const res = await axios.put(`http://localhost:5000/api/posts/unlike/${post._id}`)
+    const res = await axios.put(`https://dwidder-backend.herokuapp.com/api/posts/unlike/${post._id}`)
     return res.data
 })
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { follow, unfollow } from '../../features/profile/profileSlice'
+import { Button } from '@material-ui/core'
 import './profile.css'
 
 const FollowAction = ({ profile }) => {
@@ -33,13 +34,13 @@ const FollowAction = ({ profile }) => {
         <>
             {checkFollow()
                 ?
-                <span onClick={unfollowProfile}
+                <Button onClick={unfollowProfile}
                     className="sec__button"
-                >Unfollow</span>
+                >Unfollow</Button>
                 :
-                <span onClick={followProfile}
+                <Button onClick={followProfile}
                     className="prm__button"
-                >follow</span>
+                >follow</Button>
             }
         </>
     )

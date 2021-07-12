@@ -1,0 +1,98 @@
+.follow{
+    flex: 0.7;
+    border-right: 1px solid var(--dwidder-background);
+    min-width: fit-content;
+    overflow-y: scroll;
+  }
+  
+  .follow::-webkit-scrollbar{
+      display: none;
+  }
+  
+  .follow__header{
+      position: sticky;
+      top:0;
+      background-color: white;
+      z-index: 100;
+      border: 1px solid var(--dwidder-background);
+      padding: 15px 20px;
+  }
+  
+  .list__container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .prm__button{
+      background-color: var(--dwidder-color) !important;
+      border: none !important;
+      color: white !important;
+      font-weight: 900 !important;
+      text-transform: inherit !important;
+      border-radius: 30px !important;
+      width: 80px;
+      height: 40px !important;
+      margin-top: 20px !important;
+      margin-left: auto !important;
+  }
+  
+  
+  .sec__button{
+      background-color: var(--dwidder-background) !important;
+      border: none !important;
+      color: var(--dwidder-color) !important;
+      font-weight: 900 !important;
+      text-transform: inherit !important;
+      border-radius: 30px !important;
+      width: 80px;
+      height: 40px !important;
+      margin-top: 20px !important;
+      margin-left: auto !important;
+  }
+  
+  .account{
+      margin-Top: 5rem;
+      display: flex;
+      align-items: flex-start;
+      border: 1px solid var(--dwidder-background);
+      padding: 20px;
+      background-color: #f5f8fa;
+      border-radius: 20px;
+      cursor: pointer;
+  }
+  
+    
+    .account__username {
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: gray;
+      margin-left: 1rem;
+      
+    }
+    
+    .account__displayname > h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+      margin-left: 1rem;
+    }
+  
+    
+    .account__badge {
+      font-size: 14px !important;
+      color: var(--dwidder-color);
+    }
+  
+    @media screen and (max-width: 420px) {
+      .account__info {
+        display:block;
+      }
+      .follow{
+        flex: 1;
+    border-right: 1px solid var(--dwidder-background);
+    min-width: 100%;
+    overflow-y: scroll;
+      }
+    }

@@ -33,3 +33,14 @@
     margin-top: 20px !important;
     margin-left: auto !important;
 }
+
+.content__length{
+        font-weight: 600 !important;
+        color: yellowgreen;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    width: 80px;
+    height: 10px !important;
+    margin-top: 20px !important;
+    margin-left: auto !important;
+}

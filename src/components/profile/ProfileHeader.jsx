@@ -91,7 +91,7 @@ const ProfileHeader = ({ profile }) => {
                         </div>
                         <div style={{ display: "flex", alignItems: "center", padding: "5px" }}>
                             <DateRangeIcon fontSize="default" />
-                            <h3>: {profile.birthdate}</h3></div>
+                            <h3>: {profile.birthdate.split('T')[0]}</h3></div>
                     </div>
                 </CardContent>
             </CardActionArea>
@@ -102,22 +102,22 @@ const ProfileHeader = ({ profile }) => {
                         onClick={() => navigate('/followers')}
                     >
                         {profile.followers.length >= 1 ? profile.followers.length : 0}
-                        Followers
+                        {" "}Followers
                     </span>
-                    {"             ||            "}
+                    {"             |            "}
                     <span
                         style={{ cursor: "pointer" }}
                         onClick={() => navigate('/following')}
                     >
                         {profile.following.length >= 1 ? profile.following.length : 0}
-                        Following
+                        {" "}Following
                     </span>
                 </h4>
 
                 {
                     user._id === profile.user._id
                         ?
-                        <EditProfileModal style={{ float: "right", marginRight: "0" }} />
+                        <EditProfileModal style={{ float: "right", marginRight: "0", cursor: "pointer" }} />
                         :
                         <FollowAction profile={profile} />
                 }

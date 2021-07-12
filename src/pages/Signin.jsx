@@ -7,6 +7,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
 import { unwrapResult } from '@reduxjs/toolkit';
 
+import TextField from '@material-ui/core/TextField';
+
 
 
 const Signin = () => {
@@ -40,11 +42,16 @@ const Signin = () => {
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Log in to Dwidder</h1>
                 {error && <Alert severity="error" variant="standard">Incorrect Email/Password</Alert>}
+
                 <label><h3>Email</h3></label>
-                <input type="email" name="email" placeholder="Email" value={email} onChange={handleChange} />
+                <TextField id="outlined-basic" label="Email" variant="outlined" className="input"
+                    type="email" name="email" placeholder="Email" value={email} onChange={handleChange}
+                />
 
                 <label><h3>Password</h3></label>
-                <input type="text" name="password" placeholder="Password" value={password} onChange={handleChange} />
+                <TextField id="outlined-basic" label="Password" variant="outlined" className="input"
+                    type="text" name="password" placeholder="Password" value={password} onChange={handleChange}
+                />
 
                 <button type="submit" value="Submit">{status !== 'loading' ? <h3>Submit</h3> : <CircularProgress />}</button>
 

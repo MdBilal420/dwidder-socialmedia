@@ -78,9 +78,16 @@ const Post = ({ post }) => {
                 <div className="post__footer">
                     {checkLike()
                         ?
-                        <FavoriteIcon fontSize="default" onClick={removeFromFav} />
+                        <span style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <FavoriteIcon fontSize="default" onClick={removeFromFav} />
+
+                            <p style={{ padding: "0.5rem" }}>{post.likes.length} </p>
+                        </span>
                         :
+
                         <FavoriteBorderIcon fontSize="default" onClick={addToFav} />
+
+
                     }
                     {location.pathname !== "/" && checkAuthor() ?
                         <DeleteIcon fontSize="default" onClick={deletePost} />
