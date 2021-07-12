@@ -14,8 +14,9 @@ const SearchResult = () => {
     const [loading, setLoading] = useState(true)
     const [searchResults, setSearchResults] = useState([]);
 
-    const handleChange = event => {
-        setSearchTerm(event.target.value);
+    const handleChange = e => {
+        const text = e.target.value
+        setSearchTerm(text.toLowerCase());
     };
 
 
