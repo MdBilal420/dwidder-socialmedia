@@ -71,7 +71,7 @@ const Sidebar = () => {
                         <Link to='/' style={{ color: "white", textDecoration: "none" }}>
                             <SidebarOption active Icon={HomeIcon} text="Home" />
                         </Link>
-                        <span style={{ color: "#50b7f5" }} onClick={() => navigate(`/profile/${user._id}`)}>
+                        <span style={{ color: "#50b7f5" }} onClick={handleProfile}>
                             <SidebarOption Icon={PermIdentityIcon} text="Profile" />
                         </span>
 
