@@ -42,7 +42,7 @@ const Home = () => {
         if (!profile) {
             try {
                 (async () => {
-                    const res = await axios.post('https://dwidder-backend.herokuapp.com/api/profile', {
+                    await axios.post('https://dwidder-backend.herokuapp.com/api/profile', {
                         bio: "Add Bio",
                         birthdate: "01-01-1990",
                         location: "unknown",
