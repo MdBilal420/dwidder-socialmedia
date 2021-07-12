@@ -84,9 +84,10 @@ const Post = ({ post }) => {
                             <p style={{ padding: "0.5rem" }}>{post.likes.length} </p>
                         </span>
                         :
-
-                        <FavoriteBorderIcon fontSize="default" onClick={addToFav} />
-
+                        <span style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <FavoriteBorderIcon fontSize="default" onClick={addToFav} />
+                            <p style={{ padding: "0.5rem" }}>{post.likes.length} </p>
+                        </span>
 
                     }
                     {location.pathname !== "/" && checkAuthor() ?
