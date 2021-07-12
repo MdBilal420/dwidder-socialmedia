@@ -8,19 +8,19 @@ import { getProfile } from '../features/profile/profileSlice';
 import Sidebar from '../components/sidebar/Sidebar'
 import '../App.css'
 import { useNavigate } from 'react-router-dom'
-
+import { removeUser } from '../features/user/userSlice'
+import { removeProfile } from '../features/profile/profileSlice'
 const Home = () => {
 
 
     const { user } = useSelector(state => state.user)
     const posts = useSelector(state => state.posts)
     const { profile } = useSelector(state => state.profile)
+    const dispatch = useDispatch()
 
-    console.log(profile)
+    console.log("pro", profile)
 
     const navigate = useNavigate()
-
-    const dispatch = useDispatch()
 
     useEffect(() => {
         if (user) {
@@ -32,6 +32,8 @@ const Home = () => {
                 console.error(error);
             }
         } else {
+            dispatch(removeUser())
+            dispatch(removeProfile())
             localStorage.removeItem('user')
             navigate("/login")
         }
@@ -47,7 +49,7 @@ const Home = () => {
                         location: "unknown",
                         website: "https://"
                     })
-                    console.log(res.data)
+                    console.log("registr", res.data)
                     await dispatch(getProfile(user._id))
                 })()
             } catch (error) {

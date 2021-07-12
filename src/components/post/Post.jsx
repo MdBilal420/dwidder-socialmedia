@@ -67,7 +67,7 @@ const Post = ({ post }) => {
         <div className="post">
             <div className="post__avatar">
                 <Avatar
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: color, cursor: "pointer" }}
                     onClick={getUserProfile}
                 >
                     {post.username[0].toUpperCase()}

@@ -45,9 +45,6 @@ const ProfileHeader = ({ profile }) => {
     const { user } = useSelector(state => state.user)
     const navigate = useNavigate()
 
-    console.log("followers", profile.followers)
-    console.log("following", profile.following)
-
     return (
         <Card className={classes.root}>
             <CardActionArea className={classes.root}>
@@ -117,7 +114,7 @@ const ProfileHeader = ({ profile }) => {
                 {
                     user._id === profile.user._id
                         ?
-                        <EditProfileModal style={{ float: "right", marginRight: "0", cursor: "pointer" }} />
+                        <EditProfileModal style={{ float: "right", marginRight: "0" }} />
                         :
                         <FollowAction profile={profile} />
                 }

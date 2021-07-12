@@ -33,7 +33,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logout: (state) => {
+        removeUser: (state) => {
             state.user = null;
             state.status = 'idle';
             state.error = null
@@ -72,5 +72,5 @@ const userSlice = createSlice({
 })
 
 
-
+export const { removeUser } = userSlice.actions
 export default userSlice.reducer

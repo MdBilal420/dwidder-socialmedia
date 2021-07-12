@@ -33,7 +33,7 @@ const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        logout: (state) => {
+        removeProfile: (state) => {
             state.profile = null;
             state.posts = [];
             state.status = 'idle';
@@ -71,4 +71,5 @@ const profileSlice = createSlice({
     }
 })
 
+export const { removeProfile } = profileSlice.actions
 export default profileSlice.reducer

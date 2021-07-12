@@ -60,7 +60,7 @@ export default function EditProfileModal() {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title" style={{ color: "#50b7f5" }}>Edit Profile</h2>
+                        <button id="transition-modal-title" style={{ color: "#50b7f5", cursor: "pointer" }}>Edit Profile</button>
                         <div id="transition-modal-description"><EditProfile setOpen={setOpen} /></div>
                     </div>
                 </Fade>

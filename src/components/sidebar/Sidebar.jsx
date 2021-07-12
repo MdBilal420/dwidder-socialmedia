@@ -12,8 +12,8 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProfile } from '../../features/profile/profileSlice';
-
+import { getProfile, removeProfile } from '../../features/profile/profileSlice';
+import { removeUser } from '../../features/user/userSlice'
 
 
 const Sidebar = () => {
@@ -23,6 +23,8 @@ const Sidebar = () => {
     const { user } = useSelector(state => state.user)
 
     const logout = () => {
+        dispatch(removeUser())
+        dispatch(removeProfile())
         localStorage.removeItem('user')
         navigate('/login')
     }

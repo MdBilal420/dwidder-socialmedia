@@ -9,20 +9,11 @@ const Timeline = () => {
 
     const { user } = useSelector(state => state.user)
 
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!user) {
-            localStorage.removeItem('user')
-            navigate('/login')
-        }
-    }, [navigate, user])
-
 
     return (
         <div className="container">
             {user && <Sidebar />}
-            <Profile />
+            {user && <Profile />}
         </div>
     )
 }
