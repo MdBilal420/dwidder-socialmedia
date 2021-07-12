@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Sidebar from '../components/sidebar/Sidebar'
 import Profile from '../components/profile/Profile'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import "../App.css"
 
 const Timeline = () => {

@@ -34,7 +34,6 @@ const NotificationList = () => {
 
     const color = "#" + Math.floor(Math.random() * 0x1000000).toString(16)
 
-    console.log(notifications.notifications)
 
     useEffect(() => {
         try {

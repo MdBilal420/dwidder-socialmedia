@@ -18,7 +18,7 @@ const SearchResult = () => {
         setSearchTerm(event.target.value);
     };
 
-    console.log(user)
+
     useEffect(() => {
         (async () => {
             try {
@@ -36,7 +36,6 @@ const SearchResult = () => {
     }, [user, searchTerm])
 
 
-    console.log(searchResults)
     return (
         <div className="follow">
             <div className="follow__header">

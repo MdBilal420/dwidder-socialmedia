@@ -18,7 +18,6 @@ export const follow = createAsyncThunk('profile/addFollow', async (profile) => {
 
 export const unfollow = createAsyncThunk('profile/removeFollow', async (profile) => {
     const res = await axios.put(`https://dwidder-backend.herokuapp.com/api/profile/unfollow/${profile.user._id}`)
-    console.log(res.data)
     return res.data
 })
 
@@ -60,12 +59,10 @@ const profileSlice = createSlice({
         },
 
         [follow.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.profile.followers = action.payload.profile.followers
         },
 
         [unfollow.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.profile.followers = action.payload.profile.followers
         }
     }

@@ -18,7 +18,6 @@ const Home = () => {
     const { profile } = useSelector(state => state.profile)
     const dispatch = useDispatch()
 
-    console.log("pro", profile)
 
     const navigate = useNavigate()
 
@@ -49,7 +48,7 @@ const Home = () => {
                         location: "unknown",
                         website: "https://"
                     })
-                    console.log("registr", res.data)
+
                     await dispatch(getProfile(user._id))
                 })()
             } catch (error) {

@@ -4,7 +4,6 @@ import axios from "axios"
 
 export const getNotifications = createAsyncThunk('notification/getNotifications', async (profileId) => {
     const res = await axios.get(`https://dwidder-backend.herokuapp.com/api/notification/${profileId}`)
-    console.log(res.data)
     return res.data
 })
 
