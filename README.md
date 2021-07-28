@@ -26,4 +26,5 @@ Live link: https://dwidder.netlify.app/
 - Notifications
 
 
-![image](https://user-images.githubusercontent.com/29103125/127399293-f5f89f19-2ce5-4b3c-b453-a9802d24d56e.png)
+![Screenshot (62)](https://user-images.githubusercontent.com/29103125/127399503-d282bf10-913a-4d29-a2c9-8e092c27fa0e.png)
+
