@@ -1,10 +1,13 @@
 
 #  Dwidder -- Social Media App
 A Social Media App built with React + Redux + Material UI      
-
-Live link: https://dwidder.netlify.app/      
+   
 
 [Expres Server](https://github.com/MdBilal420/socialmedia-backend)
+
+Deployed app: [https://dwidder.netlify.app/](https://dwidder.netlify.app/)    
+    
+Backend source code (Express & Mongoose): [https://github.com/MdBilal420/socialmedia-backend](https://github.com/MdBilal420/socialmedia-backend)
 
 ## Tech stack
 - Frontend
